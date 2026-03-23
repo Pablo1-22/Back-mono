@@ -1,0 +1,38 @@
+# Środowisko wirtualne
+venv/
+env/
+.venv/
+
+# Django
+*.pyc
+__pycache__/
+*.pyo
+db.sqlite3
+*.sqlite3
+
+# Migracje (opcjonalnie - tutaj zostawiamy w repozytorium)
+# */migrations/
+
+# Pliki statyczne wygenerowane
+staticfiles/
+static/collected/
+
+# Archiwa i dokumenty
+*.zip
+*.7z
+*.rar
+*.pdf
+
+# Ustawienia lokalne
+*.env
+.env
+local_settings.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# System
+.DS_Store
+Thumbs.db

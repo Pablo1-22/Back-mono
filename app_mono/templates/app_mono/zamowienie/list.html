@@ -1,0 +1,36 @@
+{% extends "app_mono/base.html" %}
+
+{% block title %}Zamówienia{% endblock %}
+
+{% block content %}
+  <h1>Lista zamówień</h1>
+  {% for zamowienie in zamowienia %}
+    <article>
+      <h2>Zamówienie #{{ zamowienie.pk }}</h2>
+      <p>Klient: <strong>{{ zamowienie.klient_imie }}</strong> ({{ zamowienie.klient_email }})</p>
+      <p>Data: {{ zamowienie.data_zamowienia|date:"d.m.Y H:i" }}</p>
+      <p>Suma: <strong>{{ zamowienie.suma }} zł</strong></p>
+      <p>
+        Status:
+        {% if zamowienie.status == 'zrealizowane' %}
+          <span class="badge available">{{ zamowienie.get_status_display }}</span>
+        {% elif zamowienie.status == 'anulowane' %}
+          <span class="badge unavailable">{{ zamowienie.get_status_display }}</span>
+        {% else %}
+          <span class="badge">{{ zamowienie.get_status_display }}</span>
+        {% endif %}
+      </p>
+      {% if zamowienie.uwagi %}
+        <p>Uwagi: {{ zamowienie.uwagi }}</p>
+      {% endif %}
+      <p>Produkty:</p>
+      <ul>
+        {% for produkt in zamowienie.produkty.all %}
+          <li>{{ produkt.nazwa }} – {{ produkt.cena }} zł</li>
+        {% endfor %}
+      </ul>
+    </article>
+  {% empty %}
+    <p>Brak zamówień w bazie danych.</p>
+  {% endfor %}
+{% endblock %}

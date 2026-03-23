@@ -1,0 +1,27 @@
+{% extends "app_mono/base.html" %}
+
+{% block title %}Kategorie{% endblock %}
+
+{% block content %}
+  <h1>Kategorie produktów</h1>
+  {% for kategoria in kategorie %}
+    <article>
+      <h2>{{ kategoria.nazwa }}</h2>
+      <p class="opis">{{ kategoria.opis }}</p>
+      <p class="data">Utworzona: {{ kategoria.data_utworzenia|date:"d.m.Y" }}</p>
+      <p>
+        {% if kategoria.aktywna %}
+          <span class="badge available">Aktywna</span>
+        {% else %}
+          <span class="badge unavailable">Nieaktywna</span>
+        {% endif %}
+      </p>
+      <p class="produkty-count">
+        Liczba produktów: <strong>{{ kategoria.produkty.count }}</strong>
+      </p>
+      <p><a href="{% url 'app_mono:produkt_list' %}">Zobacz wszystkie produkty</a></p>
+    </article>
+  {% empty %}
+    <p>Brak kategorii w bazie danych.</p>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/style.css" %}" rel="stylesheet">
+</head>
+<body>
+  <header>
+    {% include "app_mono/includes/nav.html" %}
+  </header>
+
+  <main>
+    <section id="content">
+      {% block content %}
+      {% endblock %}
+    </section>
+
+    <aside>
+      <h2>Kontakt</h2>
+      <p>Dane kontaktowe</p>
+    </aside>
+  </main>
+
+  {% include "app_mono/includes/footer.html" %}
+</body>
+</html>
