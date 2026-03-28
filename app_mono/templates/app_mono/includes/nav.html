@@ -8,7 +8,7 @@
     <span class="brand-text">Kup mnie</span>
   </div>
   <div class="nav-actions">
-    <button class="nav-btn" onclick="if(document.referrer && document.referrer.startsWith(window.location.origin)){history.back()}else{window.location.href='{% url 'app_mono:produkt_list' %}'}">&#8592; Wstecz</button>
+    <button class="nav-btn" data-url="{% url 'app_mono:produkt_list' %}" onclick="if(document.referrer && document.referrer.startsWith(window.location.origin)){history.back()}else{window.location.href=this.dataset.url}">&#8592; Wstecz</button>
     <a class="nav-btn" href="{% url 'app_mono:produkt_list' %}">&#8962; Home</a>
   </div>
 </nav>
