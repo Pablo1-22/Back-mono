@@ -19,7 +19,7 @@
       <p class="produkty-count">
         Liczba produktów: <strong>{{ kategoria.produkty.count }}</strong>
       </p>
-      <p><a href="{% url 'app_mono:produkt_list' %}">Zobacz wszystkie produkty</a></p>
+      <p><a href="{% url 'app_mono:kategoria_detail' kategoria.pk %}">Zobacz wszystkie produkty</a></p>
     </article>
   {% empty %}
     <p>Brak kategorii w bazie danych.</p>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Kategoria, Produkt, Zamowienie
 
@@ -18,6 +18,16 @@ def kategoria_list(request):
         request,
         'app_mono/kategoria/list.html',
         {'kategorie': kategorie}
+    )
+
+
+def kategoria_detail(request, pk):
+    kategoria = get_object_or_404(Kategoria, pk=pk)
+    produkty = kategoria.produkty.all()
+    return render(
+        request,
+        'app_mono/kategoria/detail.html',
+        {'kategoria': kategoria, 'produkty': produkty}
     )
 
 

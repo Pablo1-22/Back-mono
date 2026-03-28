@@ -1,19 +1,18 @@
 {% extends "app_mono/base.html" %}
 
-{% block title %}Lista produktów{% endblock %}
+{% block title %}{{ kategoria.nazwa }}{% endblock %}
 
 {% block content %}
-  <h1>Lista produktów</h1>
+  <h1>{{ kategoria.nazwa }}</h1>
+  <p class="opis" style="margin-bottom: 1.5rem;">{{ kategoria.opis }}</p>
+
   {% for produkt in produkty %}
     <article>
       <h2>{{ produkt.nazwa }}</h2>
-      {% if produkt.kategoria %}
-        <p class="kategoria">Kategoria: <strong><a href="{% url 'app_mono:kategoria_detail' produkt.kategoria.pk %}">{{ produkt.kategoria.nazwa }}</a></strong></p>
-      {% endif %}
       <p class="cena">Cena: {{ produkt.cena }} zł</p>
       <p class="opis">{{ produkt.opis }}</p>
       <p class="data">Dodano: {{ produkt.data_dodania|date:"d.m.Y" }}</p>
-      <p class="dostepny">
+      <p>
         {% if produkt.dostepny %}
           <span class="badge available">Dostępny</span>
         {% else %}
@@ -22,6 +21,6 @@
       </p>
     </article>
   {% empty %}
-    <p>Brak produktów w bazie danych.</p>
+    <p>Brak produktów w tej kategorii.</p>
   {% endfor %}
 {% endblock %}
